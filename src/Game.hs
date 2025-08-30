@@ -15,7 +15,7 @@ boardSize :: (Int, Int)
 boardSize = (5, 6)
 
 initialGame :: Game
-initialGame = Game { gameBoard = array size $ zip (range size) (cycle [Nothing])
+initialGame = Game { gameBoard = array size $ zip (range size) (cycle [Just (Grey, Yellow, Green, Grey)])
                    , gameState = Choosing
                    }
     where size = ((0, 0), boardSize)
