@@ -1,12 +1,10 @@
 module Main (main) where
 
-import Lib
 import Graphics.Gloss
 
 import Game
 import Render
-
-transformGame _ game = game
+import Logic
 
 main :: IO ()
 main = play

@@ -2,8 +2,10 @@ module Game where
 
 import Data.Array
 
-data Cell = Green | Yellow | Grey deriving (Eq, Show)
-type Board = Array (Int, Int) (Maybe (Cell, Cell, Cell, Cell))
+data Cell = Green | Yellow | Grey | Empty deriving (Eq, Show)
+type Square t = (t, t, t, t)
+type Cells = Square Cell
+type Board = Array (Int, Int) Cells
 
 data State = Choosing | Filling deriving (Eq, Show)
 
@@ -15,7 +17,7 @@ boardSize :: (Int, Int)
 boardSize = (5, 6)
 
 initialGame :: Game
-initialGame = Game { gameBoard = array size $ zip (range size) (cycle [Just (Grey, Yellow, Green, Grey)])
+initialGame = Game { gameBoard = array size $ zip (range size) (cycle [(Empty, Empty, Empty, Empty)])
                    , gameState = Choosing
                    }
-    where size = ((0, 0), boardSize)
+    where size = ((0, 0), ((fst boardSize) - 1, (snd boardSize) - 1))
